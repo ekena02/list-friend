@@ -1,0 +1,16 @@
+<Show>:
+    Button:
+        background_color :.40,.40,1
+        text : "[b][i]show[/i][/b]"
+        markup : True
+        color : .1,.1,1
+        pos_hint : {'center_x':.5, 'y': .2}
+
+        size_hint : None, None
+        width: 250
+        height : 120
+        on_press:app.manager.transition.direction='left';app.manager.current='MainShowed'
+        on_press:app.manager.ids.mainshowed.ids.showed.ids.list_added.ids.list_added_child.ids.list_added_child1.showall()
+
+
+

@@ -1,0 +1,86 @@
+<Action@BoxLayout>:
+    ActionAdd :
+        id:_friend_add
+        size_hint:.5,.8
+    ActionRemove:
+        id:_friend_remove
+        size_hint:.5,.8
+
+
+
+<ActionAdd>:
+    orientation : 'vertical'
+    _friend_add: _friend_add
+    BoxLayout:
+        Widget:
+            size_hint:.005,None
+        Label:
+            size_hint:None, None
+            width:80
+            height : 50
+            text : '[b]Add Friend[/b]:'
+            markup:True
+            font_size:14
+            color : 0,1,0,1
+        TextInput:
+            hint_text : 'add...'
+            id : _friend_add
+            font_size : 15
+            size_hint:.95, .4
+            #width:self.width
+            #width:70
+            #height:40
+            pos_hint:{'center_x':.5,'center_y':.3}
+            multiline : False
+            on_text_validate:root.add()
+        Widget:
+            size_hint : .3, None
+    FloatLayout:
+        Button:
+
+            text: 'Valid'
+            size_hint:None, .6
+            width : 140
+            #height : 60
+            pos : root.center_x-self.width/2, root.y
+            on_press : root.add()
+            background_color:.5,1,.5
+
+
+
+<ActionRemove@BoxLayout>:
+    orientation : 'vertical'
+    _friend_remove : _friend_remove
+    BoxLayout:
+        Widget:
+            size_hint:.1,None
+        Label:
+            size_hint:None, None
+            width:105
+            height : 50
+            text : '[b]Remove Friend:[/b]'
+            markup:True
+            font_size:14
+            color : 1,0,0,1
+        TextInput:
+            hint_text : 'rem...'
+            id : _friend_remove
+            font_size : 15
+            size_hint:.95, .4
+            #width : 70
+            #height : 40
+            pos_hint:{'center_x':.5,'center_y':.3}
+            multiline : False
+            on_text_validate:root.remove()
+        Widget:
+            size_hint : .1, None
+    FloatLayout:
+        Button:
+            id:button
+            text: 'Valid'
+            size_hint:None, .6
+            width : 140
+            #height : 60
+            pos : root.center_x-self.width/2, root.y
+            on_press : root.remove()
+            background_color:1,.3,.3

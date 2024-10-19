@@ -1,0 +1,99 @@
+#:import showed showed
+
+<MainShowed>:
+    id:mainshowed
+    orientation:'vertical'
+    ActionBar:
+
+        ActionView:
+            ActionPrevious:
+                title:'return'
+                #app.manager.transition:'left'
+                app_icon:'cool.jpeg'
+                app_icon_width:60
+                app_icon_height:40
+
+                on_press:app.manager.transition.direction='right';app.manager.current = 'MainWidget'
+                on_press:showed.ids.list_added.ids.list_added_child.ids.list_added_child1.returne()
+
+    Showed:
+        id:showed
+
+<Showed>:
+    id:showed
+
+
+    AnchorLayout:
+        id:anchor_layout1
+        anchor_x : 'left'
+        anchor_y : 'top'
+        canvas.before:
+            #PushMatrix
+            Rectangle:
+                size:self.width/2, self.height
+                source:'yellow.jpeg'
+            Rectangle:
+                pos:self.width/2,0
+                size:self.width/2, self.height
+                source:'blue.jpeg'
+            #PopMatrix
+        ListAdded:
+            id:list_added
+            size_hint:.5,.8
+
+    AnchorLayout:
+        anchor_x:'right'
+        anchor_y:'top'
+        ListRemoved:
+            id:list_removed
+            size_hint:.5,.8
+    AnchorLayout:
+        anchor_x:'center'
+        anchor_y : 'bottom'
+        FloatLayout
+            size_hint:.3,.1
+            pos_hint:{'center_x':.5,'top':.5}
+            Button:
+                id:reinitialize_button
+                text:"reset"
+                color:1,1,1
+                font_size:24
+                pos_hint:{'center_x':.5,'y':.5}
+                on_press:root.reinitialize_confirmation()
+                background_color:.6,.03,.04
+
+
+<ListAdded@BoxLayout>:
+    id :list_added
+    orientation:'vertical'
+    Label:
+        text: '[b][color=#3333FF]Friends added[/color][/b]'
+        markup:True
+        font_size:20
+
+    ListAddedChildScroll:
+
+        id : list_added_child
+
+<ListRemoved@BoxLayout>:
+    orientation:'vertical'
+    Label:
+        text: '[b][color=#AA0000][s]Friends removed[/s][/color][/b]'
+        font_size:20
+        markup:True
+    ListRemovedChildScroll:
+        id : list_removed_child
+
+<ListAddedChildScroll@ScrollView>
+    effect_cls:'ScrollEffect'
+    ListAddedChild:
+        id : list_added_child1
+        size_hint:1,None
+        height:self.minimum_height
+
+<ListRemovedChildScroll@ScrollView>
+    effect_cls:'ScrollEffect'
+    ListRemovedChild:
+        id : list_removed_child1
+        size_hint:1,None
+        height:self.minimum_height
